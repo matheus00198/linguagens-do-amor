@@ -114,15 +114,27 @@ label.field-label{display:block;font-size:12px;font-weight:700;color:var(--text-
 .preview-card .pc-bar-fill{height:100%;border-radius:10px}
 .preview-card .pc-bar-pct{font-size:9px;color:rgba(255,255,255,0.5);width:28px;text-align:right}
 
-/* EBOOKS GRID */
+/* EBOOKS 3D BOOKS */
 .ebooks-section{margin:20px 0}
-.ebooks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
-.ebook-item{background:linear-gradient(145deg,#1a0a1e,#2d1035);border-radius:14px;padding:14px 10px;text-align:center;border:1px solid rgba(212,168,83,0.12);transition:all .3s;position:relative;overflow:hidden}
-.ebook-item:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 20px rgba(212,168,83,0.2)}
-.ebook-item .eb-icon{font-size:28px;margin-bottom:6px;display:block}
-.ebook-item .eb-title{font-size:9.5px;font-weight:700;color:#fff;line-height:1.3}
-.ebook-item .eb-tag{position:absolute;top:4px;right:4px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;padding:2px 6px;border-radius:8px}
-.ebooks-value{text-align:center;margin-top:8px}
+.ebooks-shelf{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:16px;perspective:800px}
+.book3d{width:130px;cursor:default;transition:transform .4s ease;-webkit-tap-highlight-color:transparent}
+.book3d:hover{transform:translateY(-8px)}
+.book3d-wrap{position:relative;width:130px;height:185px;transform-style:preserve-3d;transform:rotateY(-18deg);transition:transform .5s ease;margin:0 auto 8px}
+.book3d:hover .book3d-wrap{transform:rotateY(-8deg)}
+/* Front cover */
+.book3d-front{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:4px 12px 12px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px;text-align:center;box-shadow:4px 4px 16px rgba(0,0,0,0.4);transform:translateZ(12px);backface-visibility:hidden}
+.book3d-front .bf-num{font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-bottom:4px}
+.book3d-front .bf-emoji{font-size:32px;margin-bottom:6px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+.book3d-front .bf-title{font-size:11px;font-weight:700;color:#fff;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,0.4)}
+.book3d-front .bf-tag{position:absolute;top:6px;right:8px;background:#10B981;color:#fff;font-size:7px;font-weight:700;padding:2px 7px;border-radius:8px;box-shadow:0 2px 6px rgba(16,185,129,0.4)}
+/* Spine (side) */
+.book3d-spine{position:absolute;top:0;left:0;width:24px;height:100%;transform:rotateY(90deg) translateZ(0px) translateX(-12px);border-radius:2px 0 0 2px;box-shadow:inset -2px 0 6px rgba(0,0,0,0.3)}
+/* Bottom shadow */
+.book3d-shadow{width:110px;height:10px;margin:0 auto;background:radial-gradient(ellipse,rgba(0,0,0,0.2),transparent 70%);border-radius:50%;margin-top:-2px}
+/* Book label */
+.book3d-label{font-size:9.5px;font-weight:600;color:var(--text-med);text-align:center;line-height:1.3;min-height:28px}
+
+.ebooks-value{text-align:center;margin-top:12px}
 .ebooks-value .ev-old{font-size:13px;color:var(--text-light);text-decoration:line-through}
 .ebooks-value .ev-free{font-size:18px;font-weight:700;color:#10B981}
 
@@ -280,7 +292,7 @@ label.field-label{display:block;font-size:12px;font-weight:700;color:var(--text-
       <span>💡</span> Dicas práticas para seu relacionamento
       <div class="tooltip"></div>
     </div>
-    <div class="trust-item" data-tip="7 ebooks completos sobre amor, comunicação e relacionamentos. Sozinhos valem R$97!">
+    <div class="trust-item" data-tip="7 ebooks completos sobre amor, personalidade, comunicação e autoconhecimento. Sozinhos valem R$97!">
       <span>📖</span> <strong>BÔNUS: 7 Ebooks exclusivos (R$ 97 — <span style="color:#10B981">GRÁTIS</span>)</strong>
       <div class="tooltip"></div>
     </div>
@@ -323,17 +335,109 @@ label.field-label{display:block;font-size:12px;font-weight:700;color:var(--text-
   </div>
 </div>
 
-<!-- EBOOKS GRID -->
+<!-- EBOOKS 3D BOOKS -->
 <div class="ebooks-section">
   <div class="preview-title">📖 Os 7 Ebooks que você recebe de BÔNUS</div>
-  <div class="ebooks-grid">
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💕</span><div class="eb-title">As 5 Linguagens do Amor — Guia Prático</div></div>
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💬</span><div class="eb-title">Comunicação Não-Violenta no Amor</div></div>
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">🔥</span><div class="eb-title">Como Reacender a Paixão no Relacionamento</div></div>
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">🧠</span><div class="eb-title">Inteligência Emocional Para Casais</div></div>
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💑</span><div class="eb-title">100 Perguntas Pra Conhecer Seu Par</div></div>
-    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">✨</span><div class="eb-title">Autoestima e Relacionamentos Saudáveis</div></div>
-    <div class="ebook-item" style="grid-column:span 3;max-width:200px;margin:0 auto"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">❤️‍🩹</span><div class="eb-title">Superando Crises: Reconstruindo a Confiança</div></div>
+  <div class="ebooks-shelf">
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#8B1A4A,#E8487F)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">01</span>
+          <span class="bf-emoji">💕</span>
+          <span class="bf-title">As 5 Linguagens do Amor — Guia Completo</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#6B1038,#8B1A4A)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">Ame e seja amado do jeito certo</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#4C1D95,#7C3AED)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">02</span>
+          <span class="bf-emoji">🔍</span>
+          <span class="bf-title">Conheça Seu Parceiro de Verdade</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#3B0F7A,#4C1D95)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">Intimidade real e 50 perguntas profundas</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#92400E,#D97706)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">03</span>
+          <span class="bf-emoji">⚠️</span>
+          <span class="bf-title">O Que Você Está Fazendo de Errado no Amor</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#78350F,#92400E)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">12 erros silenciosos + plano de 21 dias</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#0E4A6B,#0EA5E9)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">04</span>
+          <span class="bf-emoji">🧩</span>
+          <span class="bf-title">Personalidades e Relacionamentos — DISC</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#083650,#0E4A6B)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">Os 4 perfis e combinações de casal</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#065F46,#10B981)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">05</span>
+          <span class="bf-emoji">👁️</span>
+          <span class="bf-title">Como Ler e Entender Qualquer Pessoa</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#044B38,#065F46)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">Linguagem corporal e microexpressões</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#831843,#EC4899)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">06</span>
+          <span class="bf-emoji">🔥</span>
+          <span class="bf-title">Conexão Profunda — O Plano de 30 Dias</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#6B1038,#831843)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">30 rituais diários + 100 ideias de dates</div>
+    </div>
+
+    <div class="book3d">
+      <div class="book3d-wrap">
+        <div class="book3d-front" style="background:linear-gradient(145deg,#7E2E8A,#C084FC)">
+          <span class="bf-tag">GRÁTIS</span>
+          <span class="bf-num">07</span>
+          <span class="bf-emoji">✨</span>
+          <span class="bf-title">Amor Próprio Antes de Tudo</span>
+        </div>
+        <div class="book3d-spine" style="background:linear-gradient(180deg,#5E1D6D,#7E2E8A)"></div>
+      </div>
+      <div class="book3d-shadow"></div>
+      <div class="book3d-label">Autoconhecimento, limites e 50 afirmações</div>
+    </div>
+
   </div>
   <div class="ebooks-value">
     <span class="ev-old">Valor total: R$ 97,00</span><br>
@@ -449,56 +553,56 @@ label.field-label{display:block;font-size:12px;font-weight:700;color:var(--text-
       <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
         <span style="font-size:22px">💕</span>
         <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">As 5 Linguagens do Amor</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Guia Prático Completo</div>
+          <div style="font-size:12px;font-weight:700;color:#fff">01 — As 5 Linguagens do Amor</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Guia Completo — ame e seja amado do jeito certo</div>
         </div>
         <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:22px">💬</span>
+        <span style="font-size:22px">🔍</span>
         <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">Comunicação Não-Violenta no Amor</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Pare de brigar e comece a se entender</div>
+          <div style="font-size:12px;font-weight:700;color:#fff">02 — Conheça Seu Parceiro de Verdade</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Intimidade real, estilos de apego e 50 perguntas profundas</div>
+        </div>
+        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
+        <span style="font-size:22px">⚠️</span>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700;color:#fff">03 — O Que Você Está Fazendo de Errado no Amor</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">12 erros silenciosos + plano de 21 dias</div>
+        </div>
+        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
+        <span style="font-size:22px">🧩</span>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700;color:#fff">04 — Personalidades e Relacionamentos — DISC</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Os 4 perfis, combinações de casal e como comunicar</div>
+        </div>
+        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
+        <span style="font-size:22px">👁️</span>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700;color:#fff">05 — Como Ler e Entender Qualquer Pessoa</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Linguagem corporal, microexpressões e 30 situações reais</div>
         </div>
         <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
         <span style="font-size:22px">🔥</span>
         <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">Como Reacender a Paixão</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Transforme a rotina em romance</div>
-        </div>
-        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:22px">🧠</span>
-        <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">Inteligência Emocional Para Casais</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Controle emoções e fortaleça o vínculo</div>
-        </div>
-        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:22px">💑</span>
-        <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">100 Perguntas Pra Conhecer Seu Par</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Conversas que aprofundam a conexão</div>
+          <div style="font-size:12px;font-weight:700;color:#fff">06 — Conexão Profunda — O Plano de 30 Dias</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">30 rituais diários + 100 ideias de dates</div>
         </div>
         <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
         <span style="font-size:22px">✨</span>
         <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">Autoestima e Relacionamentos Saudáveis</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Ame-se primeiro para amar melhor</div>
-        </div>
-        <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:22px">❤️‍🩹</span>
-        <div style="flex:1">
-          <div style="font-size:12px;font-weight:700;color:#fff">Superando Crises: Reconstruindo a Confiança</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Quando o amor precisa de recomeço</div>
+          <div style="font-size:12px;font-weight:700;color:#fff">07 — Amor Próprio Antes de Tudo</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5)">Autoconhecimento, limites saudáveis e 50 afirmações</div>
         </div>
         <span style="font-size:10px;color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:20px">GRÁTIS</span>
       </div>
