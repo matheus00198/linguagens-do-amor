@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descubra Sua Linguagem do Amor 💕</title>
+<meta name="description" content="Teste das 5 Linguagens do Amor - Descubra como você expressa e recebe amor">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--rose:#E8487F;--rose-light:#F472A8;--rose-soft:#FFF0F5;
+--purple:#7C3AED;--purple-light:#A78BFA;
+--gold:#D4A853;--gold-light:#F0D78C;
+--cream:#FFFAF5;--text-dark:#2D1B33;--text-med:#5C4663;--text-light:#8B7A91;
+}
+body{font-family:'Quicksand',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;overflow-x:hidden}
+
+/* ── BG ── */
+.bg-gradient{position:fixed;top:0;left:0;width:100%;height:100%;background:
+radial-gradient(ellipse at 15% 15%,rgba(232,72,127,0.07) 0%,transparent 50%),
+radial-gradient(ellipse at 85% 80%,rgba(124,58,237,0.06) 0%,transparent 50%),
+radial-gradient(ellipse at 50% 50%,rgba(212,168,83,0.04) 0%,transparent 60%);
+pointer-events:none;z-index:0}
+.float-hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.float-hearts i{position:absolute;bottom:-20px;font-style:normal;opacity:0.06;animation:riseHeart 18s linear infinite}
+@keyframes riseHeart{0%{transform:translateY(0) rotate(0);opacity:0.06}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:20px 16px 40px}
+
+/* ── SCREENS ── */
+.screen{display:none;animation:slideUp .55s ease}
+.screen.active{display:block}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARD ── */
+.card{background:linear-gradient(150deg,#fff 0%,#FFF8FB 50%,#F8F0FF 100%);border-radius:24px;padding:40px 28px;box-shadow:0 16px 50px rgba(232,72,127,0.1),0 2px 12px rgba(0,0,0,0.03);border:1px solid rgba(232,72,127,0.07);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:-60%;right:-40%;width:80%;height:80%;background:radial-gradient(circle,rgba(212,168,83,0.06) 0%,transparent 70%);pointer-events:none}
+
+/* ── WELCOME ── */
+.heart-big{font-size:58px;text-align:center;margin-bottom:16px;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;text-align:center;background:linear-gradient(135deg,var(--rose),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:6px}
+.subtitle{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--gold);text-align:center;margin-bottom:22px}
+.desc{font-size:14.5px;color:var(--text-med);line-height:1.7;text-align:center;margin-bottom:28px}
+.tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.tag{background:linear-gradient(135deg,rgba(232,72,127,0.07),rgba(124,58,237,0.07));border:1px solid rgba(232,72,127,0.1);border-radius:50px;padding:7px 15px;font-size:11.5px;color:var(--text-med);font-weight:600}
+label.field-label{display:block;font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px;text-align:center}
+.input{width:100%;padding:15px 18px;border:2px solid rgba(232,72,127,0.12);border-radius:14px;font-family:'Quicksand',sans-serif;font-size:16px;color:var(--text-dark);background:rgba(255,255,255,0.8);text-align:center;transition:.3s;margin-bottom:24px}
+.input:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 4px rgba(232,72,127,0.08);background:#fff}
+.input::placeholder{color:#bbb}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:17px 30px;border:none;border-radius:60px;font-family:'Quicksand',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:.35s;letter-spacing:.3px}
+.btn-main{background:linear-gradient(135deg,var(--rose),var(--purple));color:#fff;box-shadow:0 8px 28px rgba(232,72,127,0.28)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,72,127,0.36)}
+.btn-main:active{transform:translateY(0)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#C4922A);color:#fff;box-shadow:0 8px 28px rgba(212,168,83,0.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(212,168,83,0.4)}
+.btn-outline{background:transparent;border:2px solid var(--rose);color:var(--rose)}
+.btn-outline:hover{background:var(--rose);color:#fff}
+.btn-green{background:linear-gradient(135deg,#10B981,#059669);color:#fff;box-shadow:0 8px 28px rgba(16,185,129,0.3)}
+.btn-green:hover{transform:translateY(-2px)}
+
+/* ── QUIZ ── */
+.progress-wrap{margin-bottom:20px}
+.progress-track{background:rgba(232,72,127,0.1);border-radius:20px;height:8px;overflow:hidden;margin-bottom:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--purple));border-radius:20px;transition:width .5s ease}
+.progress-label{font-size:12px;color:var(--text-light);font-weight:600;text-align:center}
+
+.q-num{font-size:11px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.q-text{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--text-dark);line-height:1.4;margin-bottom:24px}
+
+.opt{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;background:#fff;border:2px solid rgba(232,72,127,0.08);border-radius:14px;font-family:'Quicksand',sans-serif;font-size:14.5px;color:var(--text-dark);cursor:pointer;transition:.3s;line-height:1.5}
+.opt:hover{border-color:var(--rose);background:rgba(232,72,127,0.03);transform:translateX(4px)}
+.opt:active{transform:scale(.98)}
+.opt-letter{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--rose-light),var(--purple-light));color:#fff;font-size:11px;font-weight:700;margin-right:10px;vertical-align:middle}
+
+/* ── PAYWALL ── */
+.paywall-icon{font-size:50px;text-align:center;margin-bottom:14px}
+.lock-msg{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;text-align:center;color:var(--text-dark);margin-bottom:6px}
+.lock-sub{font-size:14px;color:var(--text-med);text-align:center;line-height:1.6;margin-bottom:24px}
+.price-tag{text-align:center;margin-bottom:24px}
+.price-old{font-size:14px;color:var(--text-light);text-decoration:line-through}
+.price-now{font-size:36px;font-weight:700;background:linear-gradient(135deg,var(--rose),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.price-note{font-size:12px;color:var(--text-light);margin-top:2px}
+.trust-items{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-med);position:relative;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,0.5);border:1px solid rgba(232,72,127,0.06);cursor:default;transition:all .3s ease;-webkit-tap-highlight-color:transparent}
+.trust-item:hover,.trust-item:active{background:linear-gradient(135deg,rgba(232,72,127,0.08),rgba(124,58,237,0.08));border-color:rgba(232,72,127,0.2);transform:translateX(6px) scale(1.02)}
+.trust-item span:first-child{font-size:18px;flex-shrink:0}
+.trust-item strong{color:var(--text-dark)}
+
+/* TOOLTIP BALLOON */
+.trust-item .tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(8px) scale(0.9);background:linear-gradient(135deg,var(--rose-dark,#C13468),var(--purple));color:#fff;font-size:11.5px;font-weight:600;padding:10px 16px;border-radius:12px;white-space:normal;width:max-content;max-width:260px;text-align:center;line-height:1.5;opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:50;box-shadow:0 8px 24px rgba(232,72,127,0.3)}
+.trust-item .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--purple)}
+.trust-item:hover .tooltip,.trust-item.touched .tooltip{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+
+/* RESULTS PREVIEW CARDS */
+.preview-section{margin:20px 0}
+.preview-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dark);text-align:center;margin-bottom:14px}
+.preview-scroll{display:flex;gap:12px;overflow-x:auto;padding:4px 0 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.preview-scroll::-webkit-scrollbar{display:none}
+.preview-card{min-width:200px;background:linear-gradient(150deg,#1a0a1e,#2d1035);border-radius:16px;padding:18px 16px;flex-shrink:0;border:1px solid rgba(212,168,83,0.15);position:relative;overflow:hidden}
+.preview-card::before{content:'';position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(232,72,127,0.1),transparent 70%);pointer-events:none}
+.preview-card .pc-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.preview-card .pc-lang{font-size:11px;color:var(--gold-light);font-weight:600;margin-bottom:10px}
+.preview-card .pc-bars{display:flex;flex-direction:column;gap:5px}
+.preview-card .pc-bar{display:flex;align-items:center;gap:6px}
+.preview-card .pc-bar-emoji{font-size:11px}
+.preview-card .pc-bar-track{flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden}
+.preview-card .pc-bar-fill{height:100%;border-radius:10px}
+.preview-card .pc-bar-pct{font-size:9px;color:rgba(255,255,255,0.5);width:28px;text-align:right}
+
+/* EBOOKS GRID */
+.ebooks-section{margin:20px 0}
+.ebooks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.ebook-item{background:linear-gradient(145deg,#1a0a1e,#2d1035);border-radius:14px;padding:14px 10px;text-align:center;border:1px solid rgba(212,168,83,0.12);transition:all .3s;position:relative;overflow:hidden}
+.ebook-item:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 20px rgba(212,168,83,0.2)}
+.ebook-item .eb-icon{font-size:28px;margin-bottom:6px;display:block}
+.ebook-item .eb-title{font-size:9.5px;font-weight:700;color:#fff;line-height:1.3}
+.ebook-item .eb-tag{position:absolute;top:4px;right:4px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;padding:2px 6px;border-radius:8px}
+.ebooks-value{text-align:center;margin-top:8px}
+.ebooks-value .ev-old{font-size:13px;color:var(--text-light);text-decoration:line-through}
+.ebooks-value .ev-free{font-size:18px;font-weight:700;color:#10B981}
+
+/* TESTIMONIALS */
+.testimonials-section{margin:20px 0}
+.testimonial{background:rgba(255,255,255,0.7);border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid rgba(232,72,127,0.06);position:relative;transition:all .3s;animation:fadeInTest .5s ease forwards;opacity:0}
+.testimonial:nth-child(1){animation-delay:.1s}
+.testimonial:nth-child(2){animation-delay:.3s}
+.testimonial:nth-child(3){animation-delay:.5s}
+.testimonial:nth-child(4){animation-delay:.7s}
+@keyframes fadeInTest{to{opacity:1;transform:translateY(0)}from{opacity:0;transform:translateY(10px)}}
+.testimonial:hover{border-color:rgba(232,72,127,0.2);box-shadow:0 4px 16px rgba(232,72,127,0.08)}
+.test-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.test-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.test-info{flex:1}
+.test-name{font-size:12px;font-weight:700;color:var(--text-dark)}
+.test-stars{font-size:11px;letter-spacing:1px}
+.test-text{font-size:12.5px;color:var(--text-med);line-height:1.6;font-style:italic}
+.test-text strong{color:var(--text-dark);font-style:normal}
+.test-verified{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#10B981;font-weight:600;margin-top:6px}
+
+/* URGENCY BAR */
+.urgency-bar{background:linear-gradient(90deg,var(--rose),var(--purple));color:#fff;text-align:center;padding:10px;border-radius:12px;font-size:12px;font-weight:700;margin-bottom:16px;animation:pulseGlow 2s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(232,72,127,0.4)}50%{box-shadow:0 0 0 8px rgba(232,72,127,0)}}
+
+/* COUNTER */
+.counter-line{text-align:center;font-size:12px;color:var(--text-med);margin-bottom:16px}
+.counter-line strong{color:var(--rose)}
+.counter-dot{display:inline-block;width:8px;height:8px;background:#10B981;border-radius:50%;margin-right:4px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ── RESULTS ── */
+.r-emoji{font-size:52px;text-align:center;margin-bottom:12px;animation:bounceIn .7s ease}
+@keyframes bounceIn{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.r-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:4px}
+.r-main{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;text-align:center;background:linear-gradient(135deg,var(--rose),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.r-secondary{font-size:13px;color:var(--text-med);text-align:center;margin-bottom:18px}
+.r-desc{font-size:14px;color:var(--text-med);line-height:1.7;text-align:left;background:rgba(255,255,255,0.6);padding:18px;border-radius:14px;border-left:4px solid var(--rose);margin-bottom:26px}
+
+.chart-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dark);margin-bottom:16px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.bar-icon{font-size:18px;width:26px;text-align:center;flex-shrink:0}
+.bar-body{flex:1}
+.bar-head{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--text-dark);margin-bottom:3px}
+.bar-track{height:10px;background:rgba(232,72,127,0.07);border-radius:20px;overflow:hidden}
+.bar-fill{height:100%;border-radius:20px;transition:width 1s ease}
+.c1{background:linear-gradient(90deg,#E8487F,#C13468)}
+.c2{background:linear-gradient(90deg,#F472A8,#E8487F)}
+.c3{background:linear-gradient(90deg,#A78BFA,#7C3AED)}
+.c4{background:linear-gradient(90deg,#D4A853,#B8922E)}
+.c5{background:linear-gradient(90deg,#34D399,#059669)}
+
+.cert-wrap{margin-top:24px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
+.cert-wrap canvas{display:block;width:100%;height:auto}
+.btns-stack{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+
+.share-cta{background:linear-gradient(135deg,rgba(232,72,127,0.05),rgba(124,58,237,0.05));border:1.5px dashed var(--rose-light);border-radius:14px;padding:18px;text-align:center;margin-top:20px}
+.share-cta p{font-size:13.5px;color:var(--text-med);line-height:1.6}
+.share-cta strong{color:var(--rose)}
+
+.footer{text-align:center;padding:28px 0 10px;font-size:11px;color:var(--text-light)}
+
+/* ── CONFETTI ── */
+.confetti{position:fixed;z-index:999;pointer-events:none;animation:confDrop 3s ease forwards}
+@keyframes confDrop{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div class="float-hearts" id="floatHearts"></div>
+
+<div class="wrap">
+
+<!-- ════════════ TELA 1: BEM-VINDO ════════════ -->
+<div class="screen active" id="scrWelcome">
+<div class="card" style="margin-top:24px">
+  <div class="heart-big">💕</div>
+  <h1 class="title">Descubra Sua<br>Linguagem do Amor</h1>
+  <p class="subtitle">Teste das 5 Linguagens — Gary Chapman</p>
+  <p class="desc">Descubra como você expressa e recebe amor. Entenda por que alguns gestos te tocam mais que outros — e transforme seus relacionamentos.</p>
+  <div class="tags">
+    <span class="tag">💬 7 Perguntas</span>
+    <span class="tag">📊 Resultado</span>
+    <span class="tag">🎓 Certificado</span>
+  </div>
+  <label class="field-label" for="inpName">Seu nome</label>
+  <input type="text" class="input" id="inpName" placeholder="Digite seu nome..." maxlength="30">
+  <button class="btn btn-main" onclick="iniciar()">Iniciar Teste 💕</button>
+</div>
+</div>
+
+<!-- ════════════ TELA 2: PERGUNTAS ════════════ -->
+<div class="screen" id="scrQuiz">
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progBar" style="width:0%"></div></div>
+  <div class="progress-label" id="progLabel">Pergunta 1 de 7</div>
+</div>
+<div class="card" id="qCard">
+  <div class="q-num" id="qNum">PERGUNTA 01</div>
+  <div class="q-text" id="qText"></div>
+  <button class="opt" onclick="responder('A')"><span class="opt-letter">A</span><span id="txtA"></span></button>
+  <button class="opt" onclick="responder('B')"><span class="opt-letter">B</span><span id="txtB"></span></button>
+</div>
+</div>
+
+<!-- ════════════ TELA 3: PAYWALL ════════════ -->
+<div class="screen" id="scrPay">
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">🔥 OFERTA ESPECIAL — Preço promocional por tempo limitado!</div>
+
+<div class="card" style="margin-top:0">
+  <div class="paywall-icon">🔒</div>
+  <div class="lock-msg">Suas respostas foram registradas!</div>
+  <p class="lock-sub" style="margin-bottom:14px">E eu vou te contar uma prévia... <strong style="color:var(--rose)">Que resultado incrível!</strong> 😍</p>
+  <p class="lock-sub" style="margin-bottom:14px">Seu perfil emocional revelou padrões <strong>muito interessantes</strong> sobre como você expressa e recebe amor. Seu resultado completo com porcentagens, certificado personalizado e análise detalhada está pronto!</p>
+  <p class="lock-sub" style="margin-bottom:14px">💕 <strong>Compartilhe com seu companheiro(a) ou com quem você mais ama</strong> e veja o resultado! Muitas brigas são geradas por não sabermos nos comunicar uns com os outros ou não sabermos nossa linguagem certa do amor.</p>
+  <p class="lock-sub" style="font-weight:700;color:var(--rose);margin-bottom:8px">Não perca essa oportunidade de transformar seus relacionamentos! ❤️</p>
+</div>
+
+<!-- RESULTADOS DE OUTRAS PESSOAS -->
+<div class="preview-section">
+  <div class="preview-title">📊 Veja resultados de quem já fez o teste</div>
+  <div class="preview-scroll" id="previewScroll">
+    <!-- Filled by JS -->
+  </div>
+</div>
+
+<div class="card" style="padding:28px 22px">
+  <div class="price-tag">
+    <div class="price-old">De R$ 19,90</div>
+    <div class="price-now">R$ 5,97</div>
+    <div class="price-note">Acesso imediato • Pix, cartão ou boleto</div>
+  </div>
+
+  <div class="counter-line"><span class="counter-dot"></span><strong id="onlineCount">347</strong> pessoas fizeram o teste hoje</div>
+
+  <div style="font-size:13px;font-weight:700;color:var(--text-dark);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;text-align:center">✨ Tudo que você vai receber:</div>
+
+  <div class="trust-items">
+    <div class="trust-item" data-tip="Descubra qual das 5 linguagens domina seu coração e como isso impacta seus relacionamentos!">
+      <span>✅</span> Resultado detalhado das 5 linguagens
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Certificado lindo com seu nome, gráfico e data — perfeito pra postar nos Stories!">
+      <span>🎓</span> Certificado personalizado com seu nome
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Veja a porcentagem exata de cada linguagem e entenda seu perfil emocional completo!">
+      <span>📊</span> Gráfico com suas porcentagens
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Dicas práticas e imediatas pra aplicar hoje mesmo no seu relacionamento!">
+      <span>💡</span> Dicas práticas para seu relacionamento
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="7 ebooks completos sobre amor, comunicação e relacionamentos. Sozinhos valem R$97!">
+      <span>📖</span> <strong>BÔNUS: 7 Ebooks exclusivos (R$ 97 — <span style="color:#10B981">GRÁTIS</span>)</strong>
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Frases testadas e aprovadas pra falar exatamente o que seu parceiro precisa ouvir!">
+      <span>💬</span> Guia de frases certas para falar na linguagem do parceiro
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Seu resultado fica salvo pra sempre. Acesse quando quiser, quantas vezes quiser!">
+      <span>🔁</span> Acesso vitalício ao seu resultado
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Compatível com qualquer dispositivo. Faça e compartilhe de onde estiver!">
+      <span>📱</span> Funciona no celular, tablet e computador
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Pagou, já vê! Sem espera, sem enrolação. Tudo instantâneo!">
+      <span>⚡</span> Resultado liberado em menos de 3 minutos
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Uma análise profunda de como você ama, recebe amor e se conecta emocionalmente!">
+      <span>💌</span> Análise do seu perfil emocional completo
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Entenda padrões que você repete sem perceber e como quebrá-los!">
+      <span>🎯</span> Descubra por que seus relacionamentos falham
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Pare de adivinhar! Saiba exatamente como a cabeça do seu parceiro funciona!">
+      <span>🧠</span> Entenda como seu parceiro pensa e age
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="A chave é saber pedir do jeito que o outro entende. Aqui você aprende!">
+      <span>❤️</span> Aprenda a pedir amor do jeito certo
+      <div class="tooltip"></div>
+    </div>
+    <div class="trust-item" data-tip="Plataforma Kiwify com criptografia total. Seus dados 100% protegidos!">
+      <span>🔒</span> Pagamento 100% seguro pela Kiwify
+      <div class="tooltip"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EBOOKS GRID -->
+<div class="ebooks-section">
+  <div class="preview-title">📖 Os 7 Ebooks que você recebe de BÔNUS</div>
+  <div class="ebooks-grid">
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💕</span><div class="eb-title">As 5 Linguagens do Amor — Guia Prático</div></div>
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💬</span><div class="eb-title">Comunicação Não-Violenta no Amor</div></div>
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">🔥</span><div class="eb-title">Como Reacender a Paixão no Relacionamento</div></div>
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">🧠</span><div class="eb-title">Inteligência Emocional Para Casais</div></div>
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">💑</span><div class="eb-title">100 Perguntas Pra Conhecer Seu Par</div></div>
+    <div class="ebook-item"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">✨</span><div class="eb-title">Autoestima e Relacionamentos Saudáveis</div></div>
+    <div class="ebook-item" style="grid-column:span 3;max-width:200px;margin:0 auto"><span class="eb-tag">GRÁTIS</span><span class="eb-icon">❤️‍🩹</span><div class="eb-title">Superando Crises: Reconstruindo a Confiança</div></div>
+  </div>
+  <div class="ebooks-value">
+    <span class="ev-old">Valor total: R$ 97,00</span><br>
+    <span class="ev-free">HOJE: GRÁTIS 🎁</span>
+  </div>
+</div>
+
+<!-- DEPOIMENTOS -->
+<div class="testimonials-section">
+  <div class="preview-title">💬 O que estão dizendo sobre o teste</div>
+
+  <div class="testimonial">
+    <div class="test-header">
+      <div class="test-avatar" style="background:linear-gradient(135deg,#E8487F,#C13468)">A</div>
+      <div class="test-info">
+        <div class="test-name">Amanda Silva</div>
+        <div class="test-stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="test-text">"Nossa, algo tão simples mas que fez <strong>total diferença na minha vida!</strong> Eu e meu namorado fizemos juntos e finalmente entendemos por que a gente brigava tanto. Ele é toque físico e eu sou palavras de afirmação. Agora tá tudo fazendo sentido! 💕"</div>
+    <div class="test-verified">✅ Compra verificada</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="test-header">
+      <div class="test-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">R</div>
+      <div class="test-info">
+        <div class="test-name">Rafael Oliveira</div>
+        <div class="test-stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="test-text">"Amigos, <strong>pelo conteúdo entregue nesse produto poderia chegar a R$ 250 fácil.</strong> São 7 ebooks + teste + certificado + análise completa. O pessoal aí fora vende somente UM ebook desse por R$ 19 reais fácil. Aqui tá tudo isso por esse pequeno valor. Recomendo demais! 🔥"</div>
+    <div class="test-verified">✅ Compra verificada</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="test-header">
+      <div class="test-avatar" style="background:linear-gradient(135deg,#D4A853,#B8922E)">C</div>
+      <div class="test-info">
+        <div class="test-name">Camila Rodrigues</div>
+        <div class="test-stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="test-text">"Fiz, mandei pro meu marido e ele fez também. Descobrimos que falamos linguagens completamente diferentes! <strong>Agora entendo por que ele nunca me dava presente</strong> — a linguagem dele é atos de serviço, ele demonstra amor FAZENDO coisas por mim. Chorei! 😭💕"</div>
+    <div class="test-verified">✅ Compra verificada</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="test-header">
+      <div class="test-avatar" style="background:linear-gradient(135deg,#10B981,#059669)">L</div>
+      <div class="test-info">
+        <div class="test-name">Lucas Mendes</div>
+        <div class="test-stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="test-text">"Ainda que fosse somente o teste, <strong>esse valor cobrado não paga nem o tráfego pago.</strong> Muito obrigado Matheus, sucesso! O conteúdo dos ebooks é absurdo de bom. Minha esposa amou e já mandou pra todas as amigas 😂👏"</div>
+    <div class="test-verified">✅ Compra verificada</div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="card" style="padding:28px 22px;text-align:center">
+  <p style="font-size:20px;margin-bottom:6px">💕</p>
+  <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:4px">Transforme seu relacionamento</p>
+  <p style="font-size:13px;color:var(--text-med);margin-bottom:16px">Por menos que um café no Starbucks ☕</p>
+  <div class="price-tag" style="margin-bottom:16px">
+    <div class="price-old">De R$ 19,90</div>
+    <div class="price-now">R$ 5,97</div>
+  </div>
+  <button class="btn btn-gold" onclick="irPagar()" style="margin-bottom:10px;font-size:17px;padding:18px 30px">Desbloquear Resultado — R$ 5,97 💛</button>
+  <p style="font-size:10.5px;color:var(--text-light)">Após o pagamento, volte aqui para ver seu resultado.</p>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:14px;font-size:10px;color:var(--text-light)">
+    <span>🔒 Seguro</span>
+    <span>⚡ Imediato</span>
+    <span>💳 Pix/Cartão</span>
+  </div>
+</div>
+
+</div>
+
+<!-- ════════════ TELA 4: RESULTADO ════════════ -->
+<div class="screen" id="scrResult">
+<div class="card" style="margin-top:16px">
+  <div class="r-emoji" id="rEmoji">💕</div>
+  <div class="r-label">SUA LINGUAGEM PRINCIPAL</div>
+  <div class="r-main" id="rMain"></div>
+  <div class="r-secondary" id="rSec"></div>
+  <div class="r-desc" id="rDesc"></div>
+
+  <div class="chart-title">📊 Suas 5 Linguagens</div>
+  <div id="chartBars"></div>
+
+  <div class="cert-wrap" id="certWrap" style="display:none">
+    <canvas id="certCanvas1" width="1080" height="1527"></canvas>
+    <canvas id="certCanvas2" width="1080" height="1527" style="margin-top:10px"></canvas>
+  </div>
+
+  <div class="btns-stack">
+    <button class="btn btn-main" onclick="baixarPDF()">Baixar Certificado PDF (2 páginas) 📥</button>
+    <button class="btn btn-green" onclick="baixarStories()">Baixar para Stories 📱</button>
+    <button class="btn btn-outline" style="background:linear-gradient(135deg,#1a1a2e,#0f0f1e);color:#fff;border-color:#333" onclick="baixarLight()">Baixar Versão Clara ☀️</button>
+    <button class="btn btn-outline" onclick="refazer()">Refazer Teste 🔄</button>
+  </div>
+
+  <div class="share-cta">
+    <p>💕 <strong>Manda pro seu amor!</strong><br>Será que vocês falam a mesma linguagem? Peça pro(a) parceiro(a) fazer o teste também!</p>
+  </div>
+</div>
+</div>
+
+</div><!-- /wrap -->
+
+<div class="footer">💕 Teste das 5 Linguagens do Amor • Baseado na teoria de Gary Chapman</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
+
+const LANGS = {
+  PA: {name:'Palavras de Afirmação', emoji:'💬', icon:'💬', color:'#E8487F',
+       desc:'Você se sente amado(a) quando ouve elogios, palavras de incentivo e declarações sinceras. Um "eu te amo", "estou orgulhoso(a) de você" ou "você é incrível" aquecem seu coração como nada mais consegue. Críticas e palavras duras te machucam profundamente.'},
+  TF: {name:'Toque Físico', emoji:'🤗', icon:'🫂', color:'#F472A8',
+       desc:'Você se sente amado(a) através do contato físico: abraços, carícias, mãos dadas, beijos e proximidade. A presença física é fundamental para você. Sem toque, você se sente distante e desconectado(a), mesmo que a pessoa esteja ao lado.'},
+  TQ: {name:'Tempo de Qualidade', emoji:'⏰', icon:'🕐', color:'#7C3AED',
+       desc:'Você se sente amado(a) quando a pessoa dedica atenção exclusiva a você. Momentos juntos, conversas profundas, olho no olho — isso é amor pra você. Distrações com celular ou falta de presença te fazem sentir invisível e desvalorizado(a).'},
+  AS: {name:'Atos de Serviço', emoji:'🤲', icon:'🛠️', color:'#D4A853',
+       desc:'Você se sente amado(a) quando a pessoa faz coisas por você: cozinhar, ajudar nas tarefas, resolver um problema, cuidar de algo que você precisa. Ações falam mais alto que palavras no seu mundo. Promessas quebradas te frustram profundamente.'},
+  PR: {name:'Presentes', emoji:'🎁', icon:'🎀', color:'#10B981',
+       desc:'Você se sente amado(a) através de presentes e lembranças que mostram que a pessoa pensou em você. Não é sobre valor material — é sobre o gesto, a surpresa, o "vi isso e lembrei de você". Esquecer datas importantes ou não dar presentes te faz sentir que não é prioridade.'}
+};
+
+const QUESTIONS = [
+  {
+    text: 'O que te faria sentir mais amado(a)?',
+    a: {txt:'Ouvir "eu te amo, você é incrível" do nada', lang:'PA'},
+    b: {txt:'Ganhar um abraço apertado e demorado', lang:'TF'}
+  },
+  {
+    text: 'Num dia difícil, o que te confortaria mais?',
+    a: {txt:'Seu parceiro(a) cozinhar sua comida favorita', lang:'AS'},
+    b: {txt:'Seu parceiro(a) largar tudo e ficar do seu lado', lang:'TQ'}
+  },
+  {
+    text: 'Qual gesto te marcaria mais no aniversário?',
+    a: {txt:'Um presente surpresa pensado especialmente pra você', lang:'PR'},
+    b: {txt:'Uma carta escrita à mão dizendo o que sente por você', lang:'PA'}
+  },
+  {
+    text: 'O que mais te incomodaria no relacionamento?',
+    a: {txt:'Seu parceiro(a) nunca te tocar ou fazer carinho', lang:'TF'},
+    b: {txt:'Seu parceiro(a) nunca ter tempo só pra vocês dois', lang:'TQ'}
+  },
+  {
+    text: 'O que você mais valoriza no dia a dia?',
+    a: {txt:'Quando a pessoa resolve algo que estava te preocupando', lang:'AS'},
+    b: {txt:'Quando a pessoa te surpreende com uma lembrancinha', lang:'PR'}
+  },
+  {
+    text: 'Como você mais demonstra amor?',
+    a: {txt:'Fazendo elogios sinceros e dizendo o que sente', lang:'PA'},
+    b: {txt:'Dedicando seu tempo e atenção total à pessoa', lang:'TQ'}
+  },
+  {
+    text: 'O que te faria se sentir especial agora?',
+    a: {txt:'Um abraço de 20 segundos sem dizer nada', lang:'TF'},
+    b: {txt:'Alguém cuidar das suas tarefas pra você descansar', lang:'AS'}
+  }
+];
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let userName = '';
+let currentQ = 0;
+let scores = {PA:0, TF:0, TQ:0, AS:0, PR:0};
+
+// ═══════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════════════════
+// WELCOME
+// ═══════════════════════════════════════════════════
+function iniciar(){
+  const n = document.getElementById('inpName').value.trim();
+  if(!n){document.getElementById('inpName').style.borderColor='var(--rose)';document.getElementById('inpName').setAttribute('placeholder','Por favor, digite seu nome...');return}
+  userName = n;
+  currentQ = 0;
+  scores = {PA:0, TF:0, TQ:0, AS:0, PR:0};
+  renderQuestion();
+  show('scrQuiz');
+}
+
+// ═══════════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════════
+function renderQuestion(){
+  const q = QUESTIONS[currentQ];
+  const pct = ((currentQ)/QUESTIONS.length*100);
+  document.getElementById('progBar').style.width = pct+'%';
+  document.getElementById('progLabel').textContent = `Pergunta ${currentQ+1} de ${QUESTIONS.length}`;
+  document.getElementById('qNum').textContent = `PERGUNTA ${String(currentQ+1).padStart(2,'0')}`;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('txtA').textContent = q.a.txt;
+  document.getElementById('txtB').textContent = q.b.txt;
+  // re-animate card
+  const card = document.getElementById('qCard');
+  card.style.animation='none'; card.offsetHeight; card.style.animation='slideUp .4s ease';
+}
+
+function responder(choice){
+  const q = QUESTIONS[currentQ];
+  const lang = choice === 'A' ? q.a.lang : q.b.lang;
+  scores[lang]++;
+  currentQ++;
+  if(currentQ < QUESTIONS.length){
+    renderQuestion();
+  } else {
+    // Save to localStorage
+    localStorage.setItem('la_name', userName);
+    localStorage.setItem('la_scores', JSON.stringify(scores));
+    localStorage.setItem('la_done', 'true');
+    // Go to paywall
+    show('scrPay');
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// PAYWALL
+// ═══════════════════════════════════════════════════
+function irPagar(){
+  window.open('https://pay.kiwify.com.br/qzYvNql','_blank');
+}
+
+// ═══════════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════════
+function calcResults(){
+  const total = Object.values(scores).reduce((a,b)=>a+b,0) || 1;
+  const pcts = {};
+  for(let k in scores) pcts[k] = Math.round((scores[k]/total)*100);
+  // Sort
+  const sorted = Object.entries(pcts).sort((a,b)=>b[1]-a[1]);
+  return {pcts, sorted, total};
+}
+
+function showResults(){
+  const {pcts, sorted} = calcResults();
+  const mainKey = sorted[0][0];
+  const secKey = sorted[1][0];
+  const main = LANGS[mainKey];
+  const sec = LANGS[secKey];
+
+  document.getElementById('rEmoji').textContent = main.emoji;
+  document.getElementById('rMain').textContent = main.name;
+  document.getElementById('rSec').textContent = `Linguagem secundária: ${sec.name} (${sorted[1][1]}%)`;
+  document.getElementById('rDesc').innerHTML = main.desc;
+
+  // Chart bars
+  const colors = ['c1','c2','c3','c4','c5'];
+  let barsHTML = '';
+  sorted.forEach((item, i) => {
+    const key = item[0];
+    const pct = item[1];
+    const lang = LANGS[key];
+    barsHTML += `
+    <div class="bar-row">
+      <div class="bar-icon">${lang.icon}</div>
+      <div class="bar-body">
+        <div class="bar-head"><span>${lang.name}</span><span>${pct}%</span></div>
+        <div class="bar-track"><div class="bar-fill ${colors[i]}" style="width:0%" data-w="${pct}"></div></div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('chartBars').innerHTML = barsHTML;
+
+  show('scrResult');
+
+  // Animate bars
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(el=>{
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 200);
+
+  // Generate certificate
+  setTimeout(()=>gerarCertificado(), 500);
+
+  // Confetti
+  launchConfetti();
+}
+
+// ═══════════════════════════════════════════════════
+// CERTIFICATE DATA
+// ═══════════════════════════════════════════════════
+const CARTAS = {
+  PA: 'Você carrega dentro de si um dom raro: o de transformar palavras em pontes. Para você, um "eu te amo" sincero não é apenas uma frase — é um abraço na alma. Cada elogio genuíno que recebe fica guardado no seu coração como um tesouro. Você entende que palavras constroem ou destroem, e por isso valoriza tanto quem escolhe construir. Nunca subestime o poder que uma mensagem carinhosa tem sobre você — é assim que seu coração reconhece o amor.',
+  TF: 'Seu corpo fala uma língua que muitos não compreendem. Para você, um abraço demorado diz mais que mil palavras. O toque é sua forma de se conectar com o mundo, de sentir que não está sozinho(a), de saber que é amado(a). Quando alguém segura sua mão, algo dentro de você se acalma. Você não precisa de grandes gestos — precisa de presença física, de proximidade, de sentir o calor de quem ama ao seu lado.',
+  TQ: 'Você entende algo que muitos levam uma vida inteira para descobrir: o amor se mede em minutos dedicados. Para você, não importa o presente mais caro ou a palavra mais bonita — o que toca seu coração é saber que alguém escolheu estar ali, inteiramente, só com você. Atenção exclusiva é sua linguagem. Quando alguém larga o celular e te olha nos olhos, você sente que existe, que importa, que é prioridade.',
+  AS: 'Você enxerga o amor onde muitos não procuram: nos pequenos gestos do dia a dia. Quando alguém cozinha pra você, organiza algo que estava te preocupando ou simplesmente resolve um problema antes que você precise pedir — seu coração transborda. Para você, amor é verbo. Amor é ação. Promessas bonitas sem atitudes concretas não te convencem. Você valoriza quem demonstra amor fazendo, não apenas dizendo.',
+  PR: 'Você carrega um coração que se emociona com gestos de lembrança. Não é sobre o valor material — é sobre alguém ter parado o dia, pensado em você e escolhido algo especialmente pra te fazer sorrir. Um presente pra você é uma mensagem que diz: "Eu pensei em você quando você não estava por perto." Esquecer uma data importante te machuca porque significa que você não estava nos pensamentos de quem ama.'
+};
+
+const DICAS = {
+  PA: ['Envie uma mensagem de "bom dia" com um elogio sincero todos os dias','Escreva bilhetinhos e deixe em lugares que a pessoa vai encontrar','Verbalize gratidão: diga em voz alta o que admira na pessoa'],
+  TF: ['Dê abraços de pelo menos 20 segundos — ativa a oxitocina','Segure a mão da pessoa em público, sem motivo especial','Faça carinho no cabelo enquanto assistem algo juntos'],
+  TQ: ['Criem uma "data semanal" só de vocês dois, sem celular','Façam refeições olhando um pro outro, conversando de verdade','Pergunte: "Como foi seu dia?" e ouça com atenção total'],
+  AS: ['Faça algo que a pessoa odeia fazer antes que ela precise pedir','Prepare a comida favorita dela num dia qualquer da semana','Resolva aquele problema que ela sempre reclama — sem avisar'],
+  PR: ['Compre algo pequeno e diga: "Vi isso e lembrei de você"','Nunca esqueça datas importantes — coloque alarme se precisar','Surpreenda com algo que a pessoa mencionou querer há semanas']
+};
+
+const COMPAT = {
+  'PA-PA':'Vocês se entendem perfeitamente! Conversem muito e elogiem um ao outro.',
+  'PA-TF':'Um fala, o outro toca. Combine palavras carinhosas com abraços.',
+  'PA-TQ':'Elogios + momentos juntos = combinação poderosa. Dediquem tempo com diálogo.',
+  'PA-AS':'Palavras + ações. Diga que ama E demonstre fazendo coisas pelo outro.',
+  'PA-PR':'Elogios + presentes. Surpreenda com lembrancinhas acompanhadas de bilhetinhos.',
+  'TF-TF':'Casal de muito carinho! Nunca deixem de se abraçar e se tocar.',
+  'TF-TQ':'Toque + presença. Fiquem juntos, de mãos dadas, sem pressa.',
+  'TF-AS':'Carinho + ação. Cuide da pessoa e abrace depois.',
+  'TF-PR':'Toque + presentes. Entregue presentes com um abraço demorado.',
+  'TQ-TQ':'Vocês valorizam presença! Criem rituais de qualidade juntos.',
+  'TQ-AS':'Tempo + serviço. Façam coisas juntos — cozinhem, arrumem, criem.',
+  'TQ-PR':'Presença + presente. Deem presentes em momentos a dois.',
+  'AS-AS':'Casal de ação! Cuidem um do outro com gestos práticos diários.',
+  'AS-PR':'Serviço + presente. Resolva problemas E surpreenda com lembranças.',
+  'PR-PR':'Casal de surpresas! Presenteiem-se mutuamente com frequência.'
+};
+
+function gerarCodigo(){
+  const ini = userName.substring(0,3).toUpperCase();
+  const {sorted} = calcResults();
+  const lang = sorted[0][0];
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let rand = '';
+  for(let i=0;i<6;i++) rand += chars[Math.floor(Math.random()*chars.length)];
+  return `${ini}-${lang}-${rand}`;
+}
+
+function getDataOficial(){
+  const d = new Date();
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  const h = String(d.getHours()).padStart(2,'0');
+  const m = String(d.getMinutes()).padStart(2,'0');
+  return `Emitido oficialmente em São Paulo, ${d.getDate()} de ${meses[d.getMonth()]} de ${d.getFullYear()} às ${h}h${m}`;
+}
+
+// ═══════════════════════════════════════════════════
+// DRAW HELPERS
+// ═══════════════════════════════════════════════════
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y); ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y); ctx.closePath();
+}
+
+function drawBG(ctx, W, H, dark=true){
+  if(dark){
+    const bg = ctx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#1a0a1e'); bg.addColorStop(0.5,'#2d1035'); bg.addColorStop(1,'#1a0a1e');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+    ctx.globalAlpha=0.06;
+    ctx.fillStyle='#E8487F'; ctx.beginPath(); ctx.arc(100,100,200,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#7C3AED'; ctx.beginPath(); ctx.arc(W-100,H-100,250,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#D4A853'; ctx.beginPath(); ctx.arc(W-80,200,150,0,Math.PI*2); ctx.fill();
+    ctx.globalAlpha=1;
+  } else {
+    const bg = ctx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#FFF8FB'); bg.addColorStop(0.5,'#FFFFFF'); bg.addColorStop(1,'#F8F0FF');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+    ctx.globalAlpha=0.08;
+    ctx.fillStyle='#E8487F'; ctx.beginPath(); ctx.arc(100,100,200,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#7C3AED'; ctx.beginPath(); ctx.arc(W-100,H-100,250,0,Math.PI*2); ctx.fill();
+    ctx.globalAlpha=1;
+  }
+}
+
+function drawBorder(ctx, W, H, dark=true){
+  ctx.strokeStyle = dark ? '#D4A85380' : '#D4A85350';
+  ctx.lineWidth = 3; ctx.strokeRect(35,35,W-70,H-70);
+  ctx.strokeStyle = dark ? '#D4A85330' : '#D4A85320';
+  ctx.lineWidth = 1; ctx.strokeRect(50,50,W-100,H-100);
+  ctx.fillStyle = dark ? '#D4A853' : '#D4A853';
+  [[60,60],[W-60,60],[60,H-60],[W-60,H-60]].forEach(([cx,cy])=>{
+    ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2); ctx.fill();
+  });
+}
+
+function drawRadar(ctx, cx, cy, r, pcts, dark=true){
+  const keys = ['PA','TF','TQ','AS','PR'];
+  const emojis = ['💬','🫂','🕐','🛠️','🎀'];
+  const labels = ['Palavras','Toque','Tempo','Serviço','Presentes'];
+  const colors = ['#E8487F','#F472A8','#7C3AED','#D4A853','#10B981'];
+  const n = 5;
+
+  // Web lines
+  for(let ring=1;ring<=4;ring++){
+    ctx.beginPath();
+    const rr = r * (ring/4);
+    for(let i=0;i<=n;i++){
+      const angle = -Math.PI/2 + (2*Math.PI/n)*i;
+      const x = cx + rr * Math.cos(angle);
+      const y = cy + rr * Math.sin(angle);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+    ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  // Axis lines
+  for(let i=0;i<n;i++){
+    const angle = -Math.PI/2 + (2*Math.PI/n)*i;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + r*Math.cos(angle), cy + r*Math.sin(angle));
+    ctx.strokeStyle = dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+    ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  // Data polygon
+  ctx.beginPath();
+  keys.forEach((k,i)=>{
+    const val = (pcts[k]||0)/100;
+    const angle = -Math.PI/2 + (2*Math.PI/n)*i;
+    const x = cx + r*val*Math.cos(angle);
+    const y = cy + r*val*Math.sin(angle);
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  const grad = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+  grad.addColorStop(0,'rgba(232,72,127,0.4)'); grad.addColorStop(1,'rgba(124,58,237,0.2)');
+  ctx.fillStyle = grad; ctx.fill();
+  ctx.strokeStyle = '#E8487F'; ctx.lineWidth = 2.5; ctx.stroke();
+
+  // Dots + labels
+  keys.forEach((k,i)=>{
+    const val = (pcts[k]||0)/100;
+    const angle = -Math.PI/2 + (2*Math.PI/n)*i;
+    const dx = cx + r*val*Math.cos(angle);
+    const dy = cy + r*val*Math.sin(angle);
+    ctx.fillStyle = colors[i]; ctx.beginPath(); ctx.arc(dx,dy,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(dx,dy,3,0,Math.PI*2); ctx.fill();
+
+    const lx = cx + (r+35)*Math.cos(angle);
+    const ly = cy + (r+35)*Math.sin(angle);
+    ctx.fillStyle = dark ? '#FFFFFF90' : '#2D1B33';
+    ctx.font = '13px Quicksand, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i]+' '+pcts[k]+'%', lx, ly);
+    ctx.font = '18px serif';
+    ctx.fillText(emojis[i], lx, ly - 20);
+  });
+}
+
+function drawSeal(ctx, cx, cy, r, emoji, dark=true){
+  // Outer ring
+  const grad = ctx.createRadialGradient(cx,cy,r*0.6,cx,cy,r);
+  grad.addColorStop(0,'#D4A853'); grad.addColorStop(1,'#B8922E');
+  ctx.fillStyle = grad;
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+
+  // Inner
+  ctx.fillStyle = dark ? '#1a0a1e' : '#FFFFFF';
+  ctx.beginPath(); ctx.arc(cx,cy,r*0.78,0,Math.PI*2); ctx.fill();
+
+  // Text around
+  ctx.fillStyle = '#D4A853';
+  ctx.font = '700 9px Quicksand, sans-serif';
+  ctx.textAlign = 'center';
+  const text = '• LINGUAGENS DO AMOR •  CERTIFICADO OFICIAL  ';
+  const angleStep = (Math.PI*2)/text.length;
+  text.split('').forEach((ch,i)=>{
+    const a = -Math.PI/2 + i*angleStep;
+    ctx.save();
+    ctx.translate(cx + (r*0.89)*Math.cos(a), cy + (r*0.89)*Math.sin(a));
+    ctx.rotate(a + Math.PI/2);
+    ctx.fillText(ch, 0, 0);
+    ctx.restore();
+  });
+
+  // Emoji center
+  ctx.font = '36px serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(emoji, cx, cy+2);
+}
+
+function drawQRCode(ctx, x, y, size, url){
+  // Simple visual QR placeholder (real QR would need library)
+  const s = size;
+  const cells = 21;
+  const cellSize = s/cells;
+
+  ctx.fillStyle = '#FFFFFF';
+  roundRect(ctx, x-8, y-8, s+16, s+16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = '#1a0a1e';
+  // Draw a simplified QR pattern
+  for(let r=0;r<cells;r++){
+    for(let c=0;c<cells;c++){
+      // Corner squares
+      const inCorner = (r<7&&c<7)||(r<7&&c>=cells-7)||(r>=cells-7&&c<7);
+      // Random data area
+      const isData = !inCorner && Math.random()>0.45;
+      if(inCorner){
+        // Solid corners
+        const inOuter = (r<7&&c<7)||(r<7&&c>=cells-7)||(r>=cells-7&&c<7);
+        const inInner = ((r>=2&&r<=4)&&((c>=2&&c<=4)||(c>=cells-5&&c<=cells-3)))||((r>=cells-5&&r<=cells-3)&&(c>=2&&c<=4));
+        const inBorder = inOuter && !inInner;
+        if(r===0||r===6||c===0||c===6||r===cells-1||r===cells-7||c===cells-1||c===cells-7||inInner){
+          ctx.fillRect(x+c*cellSize, y+r*cellSize, cellSize, cellSize);
+        }
+      } else if(isData){
+        ctx.fillRect(x+c*cellSize, y+r*cellSize, cellSize, cellSize);
+      }
+    }
+  }
+
+  // Center logo
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(x+s/2-12, y+s/2-12, 24, 24);
+  ctx.font = '16px serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('💕', x+s/2, y+s/2+1);
+}
+
+function wrapText(ctx, text, x, y, maxW, lineH){
+  const words = text.split(' ');
+  let line = '';
+  let cy = y;
+  words.forEach(w=>{
+    const test = line + w + ' ';
+    if(ctx.measureText(test).width > maxW && line){
+      ctx.fillText(line.trim(), x, cy);
+      line = w + ' ';
+      cy += lineH;
+    } else {
+      line = test;
+    }
+  });
+  if(line) ctx.fillText(line.trim(), x, cy);
+  return cy + lineH;
+}
+
+// ═══════════════════════════════════════════════════
+// GENERATE 2-PAGE CERTIFICATE
+// ═══════════════════════════════════════════════════
+let certCode = '';
+let certDark1 = null, certDark2 = null;
+let certLight1 = null, certLight2 = null;
+
+function gerarCertificado(){
+  certCode = gerarCodigo();
+  gerarVersao(true);  // dark
+  gerarVersao(false); // light
+  document.getElementById('certWrap').style.display = 'block';
+}
+
+function gerarVersao(dark){
+  const W = 1080, H = 1527; // A4 ratio
+  const {pcts, sorted} = calcResults();
+  const mainKey = sorted[0][0];
+  const secKey = sorted[1][0];
+  const main = LANGS[mainKey];
+  const sec = LANGS[secKey];
+
+  // ═══ PAGE 1 ═══
+  const c1 = document.createElement('canvas');
+  c1.width = W; c1.height = H;
+  const ctx = c1.getContext('2d');
+
+  drawBG(ctx, W, H, dark);
+  drawBorder(ctx, W, H, dark);
+
+  // Seal top right
+  drawSeal(ctx, W-120, 120, 55, main.emoji, dark);
+
+  // Header
+  ctx.font = '50px serif'; ctx.textAlign = 'center';
+  ctx.fillText('💕', W/2, 110);
+  ctx.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx.font = '700 20px Quicksand, sans-serif';
+  ctx.fillText('CERTIFICADO OFICIAL', W/2, 155);
+  ctx.strokeStyle = dark ? '#D4A85360' : '#D4A85340';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2-130,170); ctx.lineTo(W/2+130,170); ctx.stroke();
+
+  ctx.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx.font = '700 40px Playfair Display, serif';
+  ctx.fillText('Linguagem do Amor', W/2, 220);
+
+  // Name
+  ctx.fillStyle = dark ? '#D4A853' : '#8B7A91';
+  ctx.font = '14px Quicksand, sans-serif';
+  ctx.fillText('ESTE CERTIFICADO É CONCEDIDO A', W/2, 280);
+
+  ctx.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx.font = '700 36px Playfair Display, serif';
+  ctx.fillText(userName.toUpperCase(), W/2, 325);
+  ctx.strokeStyle = dark ? '#E8487F60' : '#E8487F40';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W/2-180,343); ctx.lineTo(W/2+180,343); ctx.stroke();
+
+  // Main result
+  ctx.fillStyle = '#E8487F';
+  ctx.font = '14px Quicksand, sans-serif';
+  ctx.fillText('SUA LINGUAGEM PRINCIPAL É', W/2, 390);
+  ctx.font = '55px serif';
+  ctx.fillText(main.emoji, W/2, 450);
+  ctx.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx.font = '700 34px Playfair Display, serif';
+  ctx.fillText(main.name, W/2, 500);
+  ctx.fillStyle = dark ? '#FFFFFF70' : '#5C4663';
+  ctx.font = '15px Quicksand, sans-serif';
+  ctx.fillText(`Linguagem secundária: ${sec.name} (${sorted[1][1]}%)`, W/2, 530);
+
+  // Radar chart
+  drawRadar(ctx, W/2, 710, 140, pcts, dark);
+
+  // Percentage bars
+  let barY = 900;
+  const barW = 440, barH = 20, barX = (W-barW)/2;
+  const barColors = ['#E8487F','#F472A8','#7C3AED','#D4A853','#10B981'];
+
+  ctx.fillStyle = dark ? '#FFFFFF60' : '#5C4663';
+  ctx.font = '700 12px Quicksand, sans-serif';
+  ctx.fillText('📊 DETALHAMENTO DAS 5 LINGUAGENS', W/2, barY - 15);
+
+  barY += 10;
+  sorted.forEach((item, i) => {
+    const key = item[0]; const pct = item[1]; const lang = LANGS[key];
+    ctx.fillStyle = dark ? '#FFFFFF90' : '#2D1B33';
+    ctx.font = '13px Quicksand, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText((i===0?'⭐ ':'')+lang.name, barX, barY-5);
+    ctx.textAlign = 'right';
+    ctx.fillText(pct+'%', barX+barW, barY-5);
+
+    ctx.fillStyle = dark ? '#FFFFFF10' : '#00000008';
+    roundRect(ctx, barX, barY, barW, barH, 10); ctx.fill();
+
+    const fillW = (pct/100)*barW;
+    if(fillW>0){
+      const g = ctx.createLinearGradient(barX,0,barX+fillW,0);
+      g.addColorStop(0,barColors[i]); g.addColorStop(1,barColors[i]+'99');
+      ctx.fillStyle = g;
+      roundRect(ctx, barX, barY, Math.max(fillW,12), barH, 10); ctx.fill();
+    }
+    ctx.textAlign = 'center';
+    barY += 48;
+  });
+
+  // Code + date
+  barY += 15;
+  ctx.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx.font = '700 14px Quicksand, sans-serif';
+  ctx.fillText('🔐 CÓDIGO DE AUTENTICIDADE', W/2, barY);
+  ctx.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx.font = '700 22px Quicksand, sans-serif';
+  ctx.fillText(certCode, W/2, barY+30);
+
+  ctx.fillStyle = dark ? '#FFFFFF40' : '#8B7A91';
+  ctx.font = '12px Quicksand, sans-serif';
+  ctx.fillText(getDataOficial(), W/2, barY+58);
+
+  // Footer page 1
+  ctx.fillStyle = dark ? '#D4A85340' : '#D4A85360';
+  ctx.font = '10px Quicksand, sans-serif';
+  ctx.fillText('Página 1 de 2 • Teste das 5 Linguagens do Amor • Baseado na teoria de Gary Chapman', W/2, H-55);
+
+  // ═══ PAGE 2 ═══
+  const c2 = document.createElement('canvas');
+  c2.width = W; c2.height = H;
+  const ctx2 = c2.getContext('2d');
+
+  drawBG(ctx2, W, H, dark);
+  drawBorder(ctx2, W, H, dark);
+
+  let py = 100;
+
+  // Carta personalizada
+  ctx2.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx2.font = '700 16px Quicksand, sans-serif';
+  ctx2.textAlign = 'center';
+  ctx2.fillText('💌 CARTA PARA VOCÊ', W/2, py);
+  py += 30;
+
+  ctx2.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx2.font = '700 22px Playfair Display, serif';
+  ctx2.fillText(`Querido(a) ${userName},`, W/2, py);
+  py += 30;
+
+  ctx2.fillStyle = dark ? '#FFFFFFB0' : '#5C4663';
+  ctx2.font = 'italic 15px Playfair Display, serif';
+  ctx2.textAlign = 'left';
+  py = wrapText(ctx2, CARTAS[mainKey], 90, py, W-180, 24);
+  py += 15;
+
+  // Separator
+  ctx2.strokeStyle = dark ? '#D4A85330' : '#D4A85320';
+  ctx2.lineWidth = 1;
+  ctx2.beginPath(); ctx2.moveTo(100,py); ctx2.lineTo(W-100,py); ctx2.stroke();
+  py += 30;
+
+  // Dicas práticas
+  ctx2.textAlign = 'center';
+  ctx2.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx2.font = '700 16px Quicksand, sans-serif';
+  ctx2.fillText('🎯 COMO APLICAR NO DIA A DIA', W/2, py);
+  py += 30;
+
+  DICAS[mainKey].forEach((dica, i) => {
+    // Box
+    ctx2.fillStyle = dark ? '#FFFFFF08' : '#00000005';
+    roundRect(ctx2, 80, py-8, W-160, 45, 10);
+    ctx2.fill();
+    ctx2.strokeStyle = dark ? '#E8487F30' : '#E8487F20';
+    ctx2.lineWidth = 1;
+    roundRect(ctx2, 80, py-8, W-160, 45, 10);
+    ctx2.stroke();
+
+    ctx2.fillStyle = dark ? '#E8487F' : '#E8487F';
+    ctx2.font = '700 14px Quicksand, sans-serif';
+    ctx2.textAlign = 'left';
+    ctx2.fillText(`Dica ${i+1}:`, 100, py+8);
+    ctx2.fillStyle = dark ? '#FFFFFFB0' : '#5C4663';
+    ctx2.font = '13px Quicksand, sans-serif';
+    ctx2.fillText(dica, 100, py+28);
+    py += 58;
+  });
+
+  py += 15;
+
+  // Separator
+  ctx2.strokeStyle = dark ? '#D4A85330' : '#D4A85320';
+  ctx2.beginPath(); ctx2.moveTo(100,py); ctx2.lineTo(W-100,py); ctx2.stroke();
+  py += 30;
+
+  // Compatibilidade
+  ctx2.textAlign = 'center';
+  ctx2.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx2.font = '700 16px Quicksand, sans-serif';
+  ctx2.fillText('💑 COMPATIBILIDADE ENTRE LINGUAGENS', W/2, py);
+  py += 28;
+
+  ctx2.fillStyle = dark ? '#FFFFFF80' : '#5C4663';
+  ctx2.font = '13px Quicksand, sans-serif';
+  ctx2.fillText('Peça para seu parceiro(a) fazer o teste e descubra a compatibilidade!', W/2, py);
+  py += 25;
+
+  // Mini compatibility grid
+  const langs5 = ['PA','TF','TQ','AS','PR'];
+  const langNames = {PA:'Palavras',TF:'Toque',TQ:'Tempo',AS:'Serviço',PR:'Presentes'};
+  const compEmojis = {'PA':'💬','TF':'🫂','TQ':'🕐','AS':'🛠️','PR':'🎀'};
+
+  ctx2.fillStyle = dark ? '#FFFFFF08' : '#00000005';
+  roundRect(ctx2, 80, py-5, W-160, 120, 12); ctx2.fill();
+
+  // Show current user's result with a match hint
+  ctx2.font = '700 14px Quicksand, sans-serif';
+  ctx2.fillStyle = dark ? '#FFFFFF' : '#2D1B33';
+  ctx2.fillText(`Seu perfil: ${compEmojis[mainKey]} ${main.name}`, W/2, py+20);
+
+  ctx2.font = '12px Quicksand, sans-serif';
+  ctx2.fillStyle = dark ? '#FFFFFF80' : '#5C4663';
+  const compatKey1 = [mainKey, secKey].sort().join('-');
+  const compatText = COMPAT[compatKey1] || 'Descubra mais fazendo o teste com seu parceiro!';
+  ctx2.fillText(`Com ${sec.name}: ${compatText}`, W/2, py+50);
+
+  ctx2.font = '11px Quicksand, sans-serif';
+  ctx2.fillStyle = dark ? '#FFFFFF50' : '#8B7A91';
+  ctx2.fillText('Mande o link para seu amor e comparem os resultados! 💕', W/2, py+80);
+  py += 145;
+
+  // Separator
+  ctx2.strokeStyle = dark ? '#D4A85330' : '#D4A85320';
+  ctx2.beginPath(); ctx2.moveTo(100,py); ctx2.lineTo(W-100,py); ctx2.stroke();
+  py += 30;
+
+  // QR Code
+  ctx2.textAlign = 'center';
+  ctx2.fillStyle = dark ? '#D4A853' : '#B8922E';
+  ctx2.font = '700 14px Quicksand, sans-serif';
+  ctx2.fillText('📲 COMPARTILHE COM QUEM VOCÊ AMA', W/2, py);
+  py += 25;
+
+  drawQRCode(ctx2, W/2-55, py, 110, 'https://pay.kiwify.com.br/qzYvNql');
+  py += 125;
+
+  ctx2.fillStyle = dark ? '#FFFFFF60' : '#5C4663';
+  ctx2.font = '12px Quicksand, sans-serif';
+  ctx2.fillText('Escaneie o QR Code e descubra sua linguagem do amor', W/2, py);
+  py += 15;
+  ctx2.fillText('pay.kiwify.com.br/qzYvNql', W/2, py);
+  py += 30;
+
+  // Code repeat + date
+  ctx2.fillStyle = dark ? '#D4A85380' : '#B8922E80';
+  ctx2.font = '11px Quicksand, sans-serif';
+  ctx2.fillText(`Código: ${certCode}`, W/2, py);
+  py += 18;
+  ctx2.fillStyle = dark ? '#FFFFFF40' : '#8B7A91';
+  ctx2.font = '11px Quicksand, sans-serif';
+  ctx2.fillText(getDataOficial(), W/2, py);
+
+  // Footer page 2
+  ctx2.fillStyle = dark ? '#D4A85340' : '#D4A85360';
+  ctx2.font = '10px Quicksand, sans-serif';
+  ctx2.fillText('Página 2 de 2 • Teste das 5 Linguagens do Amor • Baseado na teoria de Gary Chapman', W/2, H-55);
+
+  // Store
+  if(dark){
+    certDark1 = c1; certDark2 = c2;
+    // Show in page
+    const vis1 = document.getElementById('certCanvas1');
+    const vis2 = document.getElementById('certCanvas2');
+    vis1.width = W; vis1.height = H;
+    vis2.width = W; vis2.height = H;
+    vis1.getContext('2d').drawImage(c1, 0, 0);
+    vis2.getContext('2d').drawImage(c2, 0, 0);
+  } else {
+    certLight1 = c1; certLight2 = c2;
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// DOWNLOAD FUNCTIONS
+// ═══════════════════════════════════════════════════
+function baixarPDF(){
+  try {
+    const {jsPDF} = window.jspdf;
+    const pdf = new jsPDF({orientation:'portrait', unit:'px', format:[1080,1527]});
+    pdf.addImage(certDark1.toDataURL('image/jpeg',0.92), 'JPEG', 0, 0, 1080, 1527);
+    pdf.addPage([1080,1527],'portrait');
+    pdf.addImage(certDark2.toDataURL('image/jpeg',0.92), 'JPEG', 0, 0, 1080, 1527);
+    pdf.save(`Certificado_Linguagem_do_Amor_${userName}.pdf`);
+  } catch(e) {
+    // Fallback: download as 2 PNGs
+    alert('Baixando como imagens (2 páginas)...');
+    baixarCanvas(certDark1, `Certificado_Pag1_${userName}.png`);
+    setTimeout(()=>baixarCanvas(certDark2, `Certificado_Pag2_${userName}.png`), 500);
+  }
+}
+
+function baixarStories(){
+  baixarCanvas(certDark1, `Stories_Linguagem_do_Amor_${userName}.png`);
+}
+
+function baixarLight(){
+  try {
+    const {jsPDF} = window.jspdf;
+    const pdf = new jsPDF({orientation:'portrait', unit:'px', format:[1080,1527]});
+    pdf.addImage(certLight1.toDataURL('image/jpeg',0.95), 'JPEG', 0, 0, 1080, 1527);
+    pdf.addPage([1080,1527],'portrait');
+    pdf.addImage(certLight2.toDataURL('image/jpeg',0.95), 'JPEG', 0, 0, 1080, 1527);
+    pdf.save(`Certificado_Claro_${userName}.pdf`);
+  } catch(e) {
+    baixarCanvas(certLight1, `Certificado_Claro_Pag1_${userName}.png`);
+    setTimeout(()=>baixarCanvas(certLight2, `Certificado_Claro_Pag2_${userName}.png`), 500);
+  }
+}
+
+function baixarCanvas(canvas, filename){
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function refazer(){
+  localStorage.removeItem('la_name');
+  localStorage.removeItem('la_scores');
+  localStorage.removeItem('la_done');
+  document.getElementById('inpName').value = '';
+  currentQ = 0;
+  scores = {PA:0, TF:0, TQ:0, AS:0, PR:0};
+  show('scrWelcome');
+}
+
+// ═══════════════════════════════════════════════════
+// CONFETTI
+// ═══════════════════════════════════════════════════
+function launchConfetti(){
+  const colors = ['#E8487F','#F472A8','#7C3AED','#A78BFA','#D4A853','#F0D78C','#10B981'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.style.left = Math.random()*100+'vw';
+      el.style.top = '-10px';
+      el.style.width = (6+Math.random()*8)+'px';
+      el.style.height = (6+Math.random()*8)+'px';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.borderRadius = Math.random()>0.5?'50%':'2px';
+      el.style.animationDuration = (2+Math.random()*2)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 4000);
+    }, i*50);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// FLOATING HEARTS BG
+// ═══════════════════════════════════════════════════
+(function(){
+  const wrap = document.getElementById('floatHearts');
+  const hearts = ['💕','💗','💖','♥','💘','💝'];
+  for(let i=0;i<12;i++){
+    const el = document.createElement('i');
+    el.textContent = hearts[i%hearts.length];
+    el.style.left = Math.random()*100+'%';
+    el.style.fontSize = (14+Math.random()*20)+'px';
+    el.style.animationDelay = (Math.random()*18)+'s';
+    el.style.animationDuration = (14+Math.random()*10)+'s';
+    wrap.appendChild(el);
+  }
+})();
+
+// ═══════════════════════════════════════════════════
+// CHECK IF RETURNING FROM PAYMENT
+// ═══════════════════════════════════════════════════
+(function(){
+  const urlParams = new URLSearchParams(window.location.search);
+  const paid = urlParams.get('paid');
+  const hasDone = localStorage.getItem('la_done');
+  const savedScores = localStorage.getItem('la_scores');
+  const savedName = localStorage.getItem('la_name');
+
+  // If user has completed quiz and comes back (either with ?paid=true or just revisiting)
+  if(hasDone === 'true' && savedScores && savedName){
+    // If they have the paid param OR are returning to the page after quiz
+    if(paid === 'true' || paid === '1'){
+      userName = savedName;
+      scores = JSON.parse(savedScores);
+      showResults();
+    } else {
+      // Show paywall - user must pay via Kiwify to see results
+      userName = savedName;
+      scores = JSON.parse(savedScores);
+      show('scrPay');
+    }
+  }
+})();
+
+// Enter key on name input
+document.getElementById('inpName').addEventListener('keypress', function(e){
+  if(e.key === 'Enter') iniciar();
+});
+
+// ═══════════════════════════════════════════════════
+// TOOLTIPS (touch + hover)
+// ═══════════════════════════════════════════════════
+(function(){
+  const items = document.querySelectorAll('.trust-item[data-tip]');
+  items.forEach(item => {
+    const tip = item.querySelector('.tooltip');
+    if(tip) tip.textContent = item.dataset.tip;
+    
+    // Mobile touch
+    item.addEventListener('touchstart', function(e){
+      // Remove all other touched
+      items.forEach(i => i.classList.remove('touched'));
+      this.classList.add('touched');
+    }, {passive:true});
+  });
+  // Close tooltips on touch elsewhere
+  document.addEventListener('touchstart', function(e){
+    if(!e.target.closest('.trust-item')){
+      items.forEach(i => i.classList.remove('touched'));
+    }
+  }, {passive:true});
+})();
+
+// ═══════════════════════════════════════════════════
+// PREVIEW CARDS (fake results)
+// ═══════════════════════════════════════════════════
+(function(){
+  const wrap = document.getElementById('previewScroll');
+  if(!wrap) return;
+  
+  const fakeResults = [
+    {name:'Juliana M.', lang:'Tempo de Qualidade', emoji:'🕐', bars:[{e:'💬',p:15,c:'#E8487F'},{e:'🫂',p:10,c:'#F472A8'},{e:'🕐',p:40,c:'#7C3AED'},{e:'🛠️',p:20,c:'#D4A853'},{e:'🎀',p:15,c:'#10B981'}]},
+    {name:'Pedro H.', lang:'Toque Físico', emoji:'🫂', bars:[{e:'💬',p:10,c:'#E8487F'},{e:'🫂',p:45,c:'#F472A8'},{e:'🕐',p:20,c:'#7C3AED'},{e:'🛠️',p:15,c:'#D4A853'},{e:'🎀',p:10,c:'#10B981'}]},
+    {name:'Mariana S.', lang:'Palavras de Afirmação', emoji:'💬', bars:[{e:'💬',p:50,c:'#E8487F'},{e:'🫂',p:15,c:'#F472A8'},{e:'🕐',p:10,c:'#7C3AED'},{e:'🛠️',p:20,c:'#D4A853'},{e:'🎀',p:5,c:'#10B981'}]},
+    {name:'Lucas R.', lang:'Atos de Serviço', emoji:'🛠️', bars:[{e:'💬',p:10,c:'#E8487F'},{e:'🫂',p:20,c:'#F472A8'},{e:'🕐',p:15,c:'#7C3AED'},{e:'🛠️',p:45,c:'#D4A853'},{e:'🎀',p:10,c:'#10B981'}]},
+    {name:'Fernanda L.', lang:'Presentes', emoji:'🎀', bars:[{e:'💬',p:20,c:'#E8487F'},{e:'🫂',p:10,c:'#F472A8'},{e:'🕐',p:15,c:'#7C3AED'},{e:'🛠️',p:15,c:'#D4A853'},{e:'🎀',p:40,c:'#10B981'}]},
+    {name:'Thiago B.', lang:'Toque Físico', emoji:'🫂', bars:[{e:'💬',p:15,c:'#E8487F'},{e:'🫂',p:40,c:'#F472A8'},{e:'🕐',p:25,c:'#7C3AED'},{e:'🛠️',p:10,c:'#D4A853'},{e:'🎀',p:10,c:'#10B981'}]},
+  ];
+  
+  fakeResults.forEach(r => {
+    let barsHTML = '';
+    r.bars.forEach(b => {
+      barsHTML += `<div class="pc-bar"><span class="pc-bar-emoji">${b.e}</span><div class="pc-bar-track"><div class="pc-bar-fill" style="width:${b.p}%;background:${b.c}"></div></div><span class="pc-bar-pct">${b.p}%</span></div>`;
+    });
+    
+    const card = document.createElement('div');
+    card.className = 'preview-card';
+    card.innerHTML = `
+      <div class="pc-name">${r.emoji} ${r.name}</div>
+      <div class="pc-lang">${r.lang}</div>
+      <div class="pc-bars">${barsHTML}</div>
+    `;
+    wrap.appendChild(card);
+  });
+})();
+
+// ═══════════════════════════════════════════════════
+// COUNTER ANIMATION
+// ═══════════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('onlineCount');
+  if(!el) return;
+  let base = 310 + Math.floor(Math.random()*80);
+  el.textContent = base;
+  setInterval(()=>{
+    base += Math.random()>0.5 ? 1 : -1;
+    if(base < 280) base = 285;
+    if(base > 420) base = 415;
+    el.textContent = base;
+  }, 8000);
+})();
+</script>
+
+</body>
+</html>
